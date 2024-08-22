@@ -1,23 +1,42 @@
-import java.sql.*;
+package DAO;
+
+import Entity.Autor;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 public class AutorDAO {
 
-    public Autor[] listar;
+public Autor[] listar;
 
+ public class AutorDAO {
+    private Connection connection;
+    public AutorDAO()throws SQLException{
+        this.connection = ConexaoBD.getInstance().getConexao();
+    }   
+    
     public void inserir(Autor autor) {
-        String sql = "INSERT INTO Autor (id_autor, nome, nacionalidade) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Autor (id_autor, nome, nacionalidade) VALUES (?, ?)";
         try (Connection conn = ConexaoBD.getInstancia().getConexao();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, autor.getIdAutor());
-            stmt.setString(2, autor.getNome());
-            stmt.setString(3, autor.getNacionalidade());
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();  // Tratamento de erro - imprime o stack trace
+           statement.setString(1, autor.getNomeAutor());
+            statement.setString(2, autor.getNacionalidade());
+            int affectedRows = statement.executeUpdate();
+
+            if (affectedRows > 0) {
+                try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        autor.setIdAutor(generatedKeys.getInt(1));
+                    }
+                }
+            }
+
         }
     }
+
 
     public void atualizar(Autor autor) {
         String sql = "UPDATE Autor SET nome = ?, nacionalidade = ? WHERE id_autor = ?";
