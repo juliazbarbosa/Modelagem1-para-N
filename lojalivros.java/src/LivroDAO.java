@@ -1,8 +1,20 @@
+package DAO;
+
+import Entity.Autor;
+import Entity.Livro;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class LivroDAO {
+    
+    private Connection connection;
+    public LivroDAO()throws SQLException {
+        this.connection = ConexaoBD.getInstance().getConexao();
+    }
 
     public void inserir(Livro livro) {
         String sql = "INSERT INTO Livro (id_livro, titulo, ano_publicacao, id_autor) VALUES (?, ?, ?, ?)";
@@ -14,7 +26,7 @@ public class LivroDAO {
             stmt.setInt(4, livro.getIdAutor());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();  // Tratamento de erro - imprime o stack trace
+            e.printStackTrace(); 
         }
     }
 
@@ -28,7 +40,7 @@ public class LivroDAO {
             stmt.setInt(4, livro.getIdLivro());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();  // Tratamento de erro - imprime o stack trace
+            e.printStackTrace(); 
         }
     }
 
@@ -55,7 +67,7 @@ public class LivroDAO {
                 livros.add(livro);
             }
         } catch (SQLException e) {
-            e.printStackTrace();  // Tratamento de erro - imprime o stack trace
+            e.printStackTrace(); 
         }
         return livros;
     }
