@@ -1,8 +1,10 @@
+package Entity;
+
 public class Livro {
     private int idLivro;
     private String titulo;
     private int anoPublicacao;
-    private int idAutor; // Chave estrangeira
+    private int idAutor; 
 
     public Livro(int idLivro, String titulo, int anoPublicacao, int idAutor) {
         this.idLivro = idLivro;
@@ -41,6 +43,16 @@ public class Livro {
 
     public void setIdAutor(int idAutor) {
         this.idAutor = idAutor;
+    }
+
+      @Override
+    public String toString() {
+        return "Livro{" +
+                "idLivro=" + idLivro +
+                ", titulo='" + titulo + '\'' +
+                ", anoPublicado=" + anoPublicado +
+                ", autor=" + autor +
+                '}';
     }
 }
 
