@@ -17,21 +17,37 @@ public class Autor {
             this.idAutor = idAutor;
         }
 
-        public String getNome() {
-            return nome;
+         public String getNomeAutor() {
+        return nomeAutor;
         }
 
-        public void setNome(String nome) {
-            this.nome = nome;
-        }
+        public void setNomeAutor(String nomeAutor) {
+        this.nomeAutor = nomeAutor;
+         }
 
         public String getNacionalidade() {
-            return nacionalidade;
+        return nacionalidade;
         }
 
         public void setNacionalidade(String nacionalidade) {
-            this.nacionalidade = nacionalidade;
+        this.nacionalidade = nacionalidade;
         }
+
+        public List<Livro> getLivros() {
+        return livros;
+        }
+
+        public void setLivros(List<Livro> livros) {
+        this.livros = livros;
+        }
+
+        @Override
+        public String toString() {
+        return "Autor{" +
+                "idAutor=" + idAutor +
+                ", nomeAutor='" + nomeAutor + '\'' +
+                ", nacionalidade='" + nacionalidade + '\'' +
+                ", livros=" + livros +
+                '}';
     }
-
-
+}
